@@ -1,0 +1,312 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<title>Matriz de Liderazgo</title>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #fdfdfd;
+            color: #333;
+            padding: 40px;
+        }
+        h1 {
+            color: #EF4573;
+            text-align: center;
+            font-weight: 300;
+        }
+        .section {
+            max-width: 700px;
+            margin: 30px auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 10px;
+        }
+        .section-title {
+            color: #EF4573;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 2px solid #EF4573;
+            border-radius: 5px;
+            background-color: #fff;
+            font-size: 14px;
+            font-family: 'Lato', sans-serif;
+        }
+        button {
+            margin-top: 20px;
+            width: 100%;
+            background-color: #EF4573;
+            border: none;
+            color: white;
+            padding: 12px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 6px;
+        }
+        .resultado {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fefefe;
+            border-radius: 10px;
+            text-align: center;
+            display: none;
+        }
+        .accion {
+            background-color: #EF4573;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        .matriz-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        table {
+            border-collapse: collapse;
+        }
+        td, th {
+            border: 1px solid #ccc;
+            width: 120px;
+            height: 60px;
+            text-align: center;
+            padding: 5px;
+            font-size: 12px;
+        }
+        .highlight {
+            background-color: #EF4573 !important;
+            color: white;
+            font-weight: bold;
+        }
+        .rotated {
+            writing-mode: vertical-lr;
+            transform: rotate(180deg);
+            text-align: center;
+        }
+    
+/* Mejora visual del recuadro del plan de acción */
+#plan_completo {
+    font-size: 16px;
+    line-height: 1.6;
+    border: 2px solid #ef4573;
+    padding: 20px;
+    background-color: #fff8fa;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(239, 69, 115, 0.2);
+}
+
+/* Inputs estilizados */
+select {
+    background-color: #EF4573;
+    color: white;
+    font-weight: bold;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Botón con efecto hover */
+button:hover {
+    background-color: #c93a62;
+    transition: 0.3s ease;
+}
+
+/* Resultado del perfil detectado */
+#perfil {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #EF4573;
+}
+
+/* Ítems destacados */
+#plan_completo strong {
+    color: #d6285b;
+    font-size: 17px;
+}
+
+/* Matriz visual - aumentar check */
+.matriz-container td {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+/* Botón Evaluar Perfil en verde */
+button {
+    background-color: #28a745;
+}
+
+button:hover {
+    background-color: #218838;
+}
+</style>
+</head>
+<body>
+<h1>Matriz de Liderazgo</h1>
+<form class="section" id="form">
+<div class="section-title">ACTITUD</div>
+<label for="actitud1">¿Qué tan entusiasmada está con su negocio?</label>
+<select id="actitud1" name="actitud1" required="">
+<option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
+<label for="actitud2">¿Tiene objetivo claro? ¿Cuál?</label>
+<select id="actitud2" name="actitud2" required="">
+<option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
+<label for="actitud3">¿Comparte el negocio a otras personas?</label>
+<select id="actitud3" name="actitud3" required="">
+<option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
+<label for="actitud4">¿Quiere crecer ella y su negocio?</label>
+<select id="actitud4" name="actitud4" required="">
+<option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
+<label for="actitud5">¿Siente orgullo de ser empresaria?</label>
+<select id="actitud5" name="actitud5" required="">
+<option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
+<div class="section-title" style="margin-top: 40px;">APTITUD</div>
+<label for="aptitud1">¿Conoce los productos y el catálogo?</label>
+<select id="aptitud1" name="aptitud1" required="">
+<option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
+<label for="aptitud2">¿Sabe calcular sus ganancias?</label>
+<select id="aptitud2" name="aptitud2" required="">
+<option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
+<label for="aptitud3">¿Puede explicar claramente el modelo Empresarial Bagués?</label>
+<select id="aptitud3" name="aptitud3" required="">
+<option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
+<label for="aptitud4">¿Conoce las características y beneficios de cada nivel de alianza?</label>
+<select id="aptitud4" name="aptitud4" required="">
+<option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
+<label for="aptitud5">¿Conoce las herramientas como Mireb, Dora, Delfín, etc.?</label>
+<select id="aptitud5" name="aptitud5" required="">
+<option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
+<button type="submit">Evaluar Perfil</button>
+</form>
+<div class="resultado" id="resultado">
+<h3>Matriz Visual</h3>
+<div class="matriz-container">
+<table>
+<tr>
+<th></th>
+<th>- - Aptitud</th><th>- Aptitud</th><th>+ Aptitud</th><th>+ + Aptitud</th>
+</tr>
+<tr><th class="rotated">+ + Actitud</th><td id="cell_0_0"></td><td id="cell_0_1"></td><td id="cell_0_2"></td><td id="cell_0_3"></td></tr><tr><th class="rotated">+ Actitud</th><td id="cell_1_0"></td><td id="cell_1_1"></td><td id="cell_1_2"></td><td id="cell_1_3"></td></tr><tr><th class="rotated">- Actitud</th><td id="cell_2_0"></td><td id="cell_2_1"></td><td id="cell_2_2"></td><td id="cell_2_3"></td></tr><tr><th class="rotated">- - Actitud</th><td id="cell_3_0"></td><td id="cell_3_1"></td><td id="cell_3_2"></td><td id="cell_3_3"></td></tr>
+</table>
+</div>
+<h2>Perfil detectado</h2>
+<div id="perfil"></div>
+<div class="accion" id="accion"></div>
+<h3 style="text-align:center; margin-top:30px;">Plan de Acción Detallado</h3>
+<div id="plan_completo" style="max-width:800px; margin:0 auto; padding:20px; border:1px solid #ccc; border-radius:10px; background:#fff; white-space:pre-line;">
+</div>
+
+</div>
+<script>const perfilToId = {
+  "++ Actitud ++ Aptitud": "perfil_pppp",
+  "++ Actitud + Aptitud": "perfil_ppp",
+  "+ Actitud ++ Aptitud": "perfil_ppp",
+  "++ Actitud - Aptitud": "perfil_ppm",
+  "+ Actitud + Aptitud": "perfil_pp",
+  "- Actitud ++ Aptitud": "perfil_mpp",
+  "++ Actitud -- Aptitud": "perfil_ppmm",
+  "+ Actitud - Aptitud": "perfil_pm",
+  "- Actitud + Aptitud": "perfil_mp",
+  "-- Actitud ++ Aptitud": "perfil_mmpp",
+  "+ Actitud -- Aptitud": "perfil_pmm",
+  "-- Actitud + Aptitud": "perfil_mmp",
+  "- Actitud - Aptitud": "perfil_mm",
+  "-- Actitud - Aptitud": "perfil_mmm",
+  "- Actitud -- Aptitud": "perfil_mmm",
+  "-- Actitud -- Aptitud": "perfil_mmmm",
+};
+
+document.getElementById("form").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    function calcularPromedio(tipo) {
+        let total = 0;
+        for (let i = 1; i <= 5; i++) {
+            total += parseInt(document.getElementById(tipo + i).value);
+        }
+        return total / 5;
+    }
+
+    function clasificar(valor) {
+        if (valor >= 3.5) return "++";
+        if (valor >= 2.5) return "+";
+        if (valor >= 1.5) return "-";
+        return "--";
+    }
+
+    const promedioActitud = calcularPromedio('actitud');
+    const promedioAptitud = calcularPromedio('aptitud');
+    const a = clasificar(promedioActitud);
+    const p = clasificar(promedioAptitud);
+    const perfil = `${a} Actitud ${p} Aptitud`;
+
+    document.getElementById("resultado").style.display = "block";
+    document.getElementById("perfil").textContent = perfil;
+
+    const idSeguro = perfilToId[perfil];
+    if (idSeguro) {
+        const divPlan = document.getElementById(idSeguro);
+        if (divPlan) {
+            document.getElementById("plan_completo").innerHTML = divPlan.innerHTML;
+        } else {
+            document.getElementById("plan_completo").innerText = "No se encontró el plan (ID no existe en HTML).";
+        }
+    } else {
+        document.getElementById("plan_completo").innerText = "No se encontró un plan de acción para este perfil.";
+    }
+
+    const niveles = { "--": 0, "-": 1, "+": 2, "++": 3 };
+    for (let i = 0; i < 4; i++) {
+        for (let j = 0; j < 4; j++) {
+            const cell = document.getElementById(`cell_${i}_${j}`);
+            if (cell) {
+                cell.classList.remove("highlight");
+                cell.textContent = "";
+            }
+        }
+    }
+    const fila = 3 - niveles[a];
+    const col = niveles[p];
+    const cell = document.getElementById(`cell_${fila}_${col}`);
+    if (cell) {
+        cell.classList.add("highlight");
+        cell.textContent = "✔";
+    }
+});
+</script>
+<div id="perfil_pppp" style="display:none;">++ Actitud / ++ Aptitud<br/><strong>🎯 Objetivo:</strong> Consolidar su liderazgo y prepararlo para el siguiente nivel.<br/><br/><br/><strong>🛠️ Acción:</strong> Fijar meta de incorporación al próximo nivel de alianza + Implementar agenda semanal de objetivos y resultados.<br/><br/><br/><strong>📈 Indicador de éxito:</strong> Meta definida y cumplimiento ≥80% de objetivos semanales.</div>
+<div id="perfil_ppp" style="display:none;">++ Actitud / + Aptitud<br/><strong>🎯 Objetivo:</strong> Impulsar su crecimiento sostenido con herramientas adecuadas.<br/><br/><br/><strong>🛠️ Acción:</strong> Fijar meta de incorporación + Sugerir formación mensual orientada a resultados.<br/><br/><br/><strong>📈 Indicador de éxito:</strong> Meta fijada y aplicación práctica del aprendizaje.</div>
+<div id="perfil_ppp" style="display:none;">+ Actitud / ++ Aptitud<br/><strong>🎯 Objetivo:</strong> Mantener su alto desempeño técnico y potenciar motivación personal.<br/><br/><br/><strong>🛠️ Acción:</strong> Crear incentivo personal a corto plazo + Plan de enfoque semanal en resultados.<br/><br/><br/><strong>📈 Indicador de éxito:</strong> Reto logrado + ≥80% cumplimiento de metas semanales.</div>
+<div id="perfil_ppm" style="display:none;">++ Actitud / - Aptitud<br/><strong>🎯 Objetivo:</strong> Encaminar su actitud positiva hacia el desarrollo de habilidades clave.<br/><br/><br/><strong>🛠️ Acción:</strong> Fijar meta de crecimiento + Diagnosticar brechas de conocimiento.<br/><br/><br/><strong>📈 Indicador de éxito:</strong> Plan de mejora personal trazado y en ejecución.</div>
+<div id="perfil_pp" style="display:none;">+ Actitud / + Aptitud<br/><strong>🎯 Objetivo:</strong> Estimular su desarrollo de manera equilibrada.<br/><br/><br/><strong>🛠️ Acción:</strong> Incentivo personal a corto plazo + Invitar a capacitarse mensualmente con foco en resultados.<br/><br/><br/><strong>📈 Indicador de éxito:</strong> Reto cumplido + 1 curso aplicado al mes.</div>
+<div id="perfil_mpp" style="display:none;">- Actitud / ++ Aptitud<br/><strong>🎯 Objetivo:</strong> Reconectar su motivación con su alto potencial técnico.<br/><br/><br/><strong>🛠️ Acción:</strong> Espacios de reflexión sobre propósito + Fijar metas semanales orientadas a resultados.<br/><br/><br/><strong>📈 Indicador de éxito:</strong> Propósito definido + constancia en cumplimiento de metas.</div>
+<div id="perfil_ppmm" style="display:none;">++ Actitud / -- Aptitud<br/><strong>🎯 Objetivo:</strong> Canalizar su fuerte compromiso hacia el aprendizaje crítico.<br/><br/><br/><strong>🛠️ Acción:</strong> Meta de crecimiento + Plan de formación con seguimiento.<br/><br/><br/><strong>📈 Indicador de éxito:</strong> Finalización del 100% con plan de formación.</div>
+<div id="perfil_pm" style="display:none;">+ Actitud / - Aptitud<br/><strong>🎯 Objetivo:</strong> Aprovechar su buena disposición para elevar su nivel técnico.<br/><br/><br/><strong>🛠️ Acción:</strong> Incentivo personal motivacional + Evaluación para identificar áreas de mejora.<br/><br/><br/><strong>📈 Indicador de éxito:</strong> Compromiso en el desarrollo de habilidades clave.</div>
+<div id="perfil_mp" style="display:none;">- Actitud / + Aptitud<br/><strong>🎯 Objetivo:</strong> Activar su compromiso personal y profesional.<br/><br/><br/><strong>🛠️ Acción:</strong> Espacios de mentoría para enfocarse en su propósito + Propuesta de capacitación práctica mensual.<br/><br/><br/><strong>📈 Indicador de éxito:</strong> Mejora de actitud observada + formación aplicada.</div>
+<div id="perfil_mmpp" style="display:none;">-- Actitud / ++ Aptitud<br/><strong>🎯 Objetivo:</strong> Definir su continuidad y compromiso, buscando potenciarse desde su capacidad.<br/><br/><br/><strong>🛠️ Acción:</strong> Charla de orientación de futuro + Agenda de resultados con metas claras.<br/><br/><br/><strong>📈 Indicador de éxito:</strong> Decisión tomada + primeras metas cumplidas.</div>
+<div id="perfil_pmm" style="display:none;">+ Actitud / -- Aptitud<br/><strong>🎯 Objetivo:</strong> Usar su motivación para mejorar rápidamente sus habilidades básicas.<br/><br/><br/><strong>🛠️ Acción:</strong> Incentivo personal + Plan de formación constante.<br/><br/><br/><strong>📈 Indicador de éxito:</strong> Curso finalizado y conocimientos validados.</div>
+<div id="perfil_mmp" style="display:none;">-- Actitud / + Aptitud<br/><strong>🎯 Objetivo:</strong> Revisar su compromiso para sostener un desempeño mínimo aceptable.<br/><br/><br/><strong>🛠️ Acción:</strong> Charla de orientación + capacitación práctica dirigida.<br/><br/><br/><strong>📈 Indicador de éxito:</strong> Decisión afirmativa por su desarrollo personal y de su negocio + mejoras actitudinales evidentes.</div>
+<div id="perfil_mm" style="display:none;">- Actitud / - Aptitud<br/><strong>🎯 Objetivo:</strong> Hacer foco en su proposito y fijar meta a corto plazo para afirmar continuidad con su negocio.<br/><br/><br/><strong>🛠️ Acción:</strong> Espacios de reflexión + diagnóstico técnico + revisión conjunta de expectativas.<br/><br/><br/><strong>📈 Indicador de éxito:</strong> Plan de acción aprobado o decisión por continuidad.</div>
+<div id="perfil_mmm" style="display:none;">-- Actitud / - Aptitud<br/><strong>🎯 Objetivo:</strong> Determinar sostenibilidad de su rol en el corto plazo.<br/><br/><br/><strong>🛠️ Acción:</strong> Charla de orientación + diagnóstico de habilidades mínimas.<br/><br/><br/><strong>📈 Indicador de éxito:</strong> Compromiso real y resultados positivos a mediano plazo.</div>
+<div id="perfil_mmm" style="display:none;">- Actitud / -- Aptitud<br/><strong>🎯 Objetivo:</strong> Detectar si hay intención de aprendizaje para establecer plan de formación.<br/><br/><br/><strong>🛠️ Acción:</strong> Espacio de mentoría + definición de condiciones mínimas de formación.<br/><br/><br/><strong>📈 Indicador de éxito:</strong> Cumplimiento en su plan de formación, objetivos claros para su negocio.</div>
+<div id="perfil_mmmm" style="display:none;">-- Actitud / -- Aptitud<br/><strong>🎯 Objetivo:</strong> Definir el proposito y rumbo de su negocio, para restructurar su forma de trabajo y equipo.<br/><br/><br/><strong>🛠️ Acción:</strong> Creae espacios de trabajo personal de mentoría, fijar objetivos concretos con no más de 3 acciones a corto plazo, lograr compromiso para mejorar cuestiones actitudinales. <br/><br/><br/><strong>📈 Indicador de éxito:</strong> Clara mejoría actitudinal, mejora en resultados a corto plazo, compromiso con los espacios de trabajo personal.</div>
+</body>
+</html>
